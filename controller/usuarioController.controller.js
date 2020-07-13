@@ -1,5 +1,6 @@
 import models from '../models'
 import bcrypt from 'bcrypt'
+import token from '../services/token'
 
 export default {
     //Anadir documento
@@ -117,11 +118,12 @@ export default {
     },
     login: async(req, res, next)=>{
         try {
-            let user = await models.Usuario.findOne({email:req.body.email})
+            let user = await models.Usuario.findOne({email:req.body.email,estado:1})
             if (user) {
                 let match = await bcrypt.compare(req.body.password,user.password)
                 if (match) {
-                    res.status(200).json(user)
+                    let tokenReturn = await token.encode(user._id)
+                    res.status(200).json({user,tokenReturn})
                 }else{
                     res.status(404).send({
                         mesagge:'El password es incorrecto'
