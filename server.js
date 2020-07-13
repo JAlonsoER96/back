@@ -14,6 +14,7 @@ import morgan from 'morgan'
 import cors from 'cors'
 import path from 'path'
 import mongoose from 'mongoose'
+import router from './routes/'
 
 /** 
  * @author Jose Alonso Espinares Romero
@@ -21,7 +22,7 @@ import mongoose from 'mongoose'
 */
 mongoose.Promise = global.Promise
 const dbURL = 'mongodb://localhost:27017/dbsistema'
-mongoose.connect(dbURL, { useCreateIndex: true, useNewUrlParser: true,useUnifiedTopology: true })
+mongoose.connect(dbURL, { useCreateIndex: true, useNewUrlParser: true,useUnifiedTopology: true,useFindAndModify:false })
   .then(mongoose => console.log('Conectado a la pase de datos'))
   .catch(err => console.log(err));
 
@@ -30,7 +31,8 @@ app.use(morgan('dev'))
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(express.static(path.join(__dirname,"public")))
+app.use(express.static(path.join(__dirname, "public")))
+app.use('/api',router)
 
 var server = app.listen(8081, function () {
   let host = 'localhost'
