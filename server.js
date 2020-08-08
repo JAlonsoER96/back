@@ -34,6 +34,10 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, "public")))
 app.use('/api',router)
 
+/**
+ *@author Jose Alonso Espinares Romero
+ *@description Congiguración del puerto 
+ */
 var server = app.listen(8081, function () {
   let host = 'localhost'
   let port = server.address().port

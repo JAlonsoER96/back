@@ -1,7 +1,10 @@
 import models from '../models'
 
 export default {
-    //Anadir documento
+    /**
+     *@author Jose Alonso Espinares Romero
+     *@description Funcion para agregar documento
+    */
     add: async(req, res, next)=>{
         try {
             const reg = await models.Articulo.create(req.body)
@@ -13,7 +16,10 @@ export default {
             next(error)
         }
     },
-    //Consultar documento
+    /**
+     * @author Jose Alonso Espinares Romer
+     * @description Consulta por ID
+    */
     query: async(req, res, next)=>{
         try {
             const reg = await models.Articulo.findOne({_id:req.query._id}).populate('categoria',{nombre:1})
