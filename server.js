@@ -21,7 +21,9 @@ import router from './routes/'
  * @description Conexion a la base de datos usando el ORM mongoose
 */
 mongoose.Promise = global.Promise
-const dbURL = 'mongodb://localhost:27017/dbsistema'
+//const dbURL = 'mongodb://localhost:27017/dbsistema'
+const dbURL = 'mongodb+srv://JAlonso:X53QUfyQymiz2L5Z@sistemamevn.jvrw8.mongodb.net/dbsistema?retryWrites=true&w=majority'
+
 mongoose.connect(dbURL, { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
   .then(mongoose => console.log('Conectado a la pase de datos'))
   .catch(err => console.log(err));
