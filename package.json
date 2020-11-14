@@ -4,7 +4,7 @@
   "description": "Proyecto MEVN",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "babel-node server.js --exec",
     "dev": "nodemon server.js --exec babel-node",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
